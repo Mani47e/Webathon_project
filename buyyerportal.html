@@ -131,64 +131,6 @@
 
     <!-- JavaScript -->
     <script>
-        function detectLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
-            } else {
-                document.getElementById("current-location").innerText = "Geolocation is not supported by your browser.";
-            }
-        }
-
-        function showPosition(position) {
-            let lat = position.coords.latitude;
-            let lon = position.coords.longitude;
-
-            // Reverse Geocoding API (OpenStreetMap)
-            fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`)
-                .then(response => response.json())
-                .then(data => {
-                    let address = data.address.suburb || data.address.village || data.address.town || data.address.city;
-
-                    document.getElementById("current-location").innerText = "Detected: " + address;
-
-                    // Check if detected location matches any dropdown options
-                    let locationDropdown = document.getElementById("location");
-                    let locationOptions = Array.from(locationDropdown.options).map(option => option.value);
-
-                    if (locationOptions.includes(address)) {
-                        locationDropdown.value = address;
-                    } else {
-                        // Add detected location to the dropdown if it doesn't exist
-                        let newOption = document.createElement("option");
-                        newOption.value = address;
-                        newOption.text = address + " (Detected)";
-                        locationDropdown.appendChild(newOption);
-                        locationDropdown.value = address;
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                    document.getElementById("current-location").innerText = "Unable to retrieve location.";
-                });
-        }
-
-        function showError(error) {
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    document.getElementById("current-location").innerText = "User denied location access.";
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    document.getElementById("current-location").innerText = "Location information unavailable.";
-                    break;
-                case error.TIMEOUT:
-                    document.getElementById("current-location").innerText = "Location request timed out.";
-                    break;
-                case error.UNKNOWN_ERROR:
-                    document.getElementById("current-location").innerText = "An unknown error occurred.";
-                    break;
-            }
-        }
-
         function toggleDropdown() {
             document.getElementById("account-dropdown").classList.toggle("show");
         }
@@ -204,9 +146,8 @@
                 }
             }
         };
-
-        // Auto detect location on page load
-        window.onload = detectLocation;
+        
+        
     </script>
 
 </body>

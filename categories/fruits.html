@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #28a745;
+            padding: 15px 20px;
+            color: white;
+        }
+        nav img {
+            height: 40px;
+        }
+        .search-container {
+            position: relative;
+        }
+        .search-container input {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+        }
+        .search-container i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: gray;
+        }
+        .box {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+        }
+        .grocery-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .grocery {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 200px;
+            transition: transform 0.3s ease;
+        }
+        .grocery:hover {
+            transform: translateY(-5px);
+        }
+        .grocery img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .add-to-cart {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .add-to-cart:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>Grocery Items</h1>&nbsp;
+        <img src="Images/Logo.jpeg" alt="logo">
+        <div class="search-container">
+            <input type="text" id="mySearch" placeholder="Search...">
+            <i class="fa fa-search"></i>
+        </div>
+    </nav>
+
+    <section id="groceries" class="box">
+        <h3><b><strong> Available Groceries</strong></b></h3>
+        <div class="grocery-container">
+            <div class="grocery" data-url="apple.jpeg" data-title="apple" data-price="100/kg">
+                <a target="_blank" href="apple.jpeg"><img src="apple.jpeg" alt="apple" /></a>
+                <h3>apple</h3>
+                <h3>&#8377; 100/kg</h3>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="grocery" data-url="banana.jpeg" data-title="banana" data-price="40/kg">
+                <a target="_blank" href="banana.jpeg"><img src="banana.jpeg" alt="Wheat" /></a>
+                <h3>banana</h3>
+                <h3>&#8377; 40/kg</h3>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="grocery" data-url="carrot.jpeg" data-title="carrot" data-price="45/kg">
+                <a target="_blank" href="carrot.jpeg"><img src="carrot.jpeg" alt="carrot" /></a>
+                <h3>carrot</h3>
+                <h3>&#8377; 45/kg</h3>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="grocery" data-url="beetroot.jpeg" data-title="beetroot" data-price="120/ltr">
+                <a target="_blank" href="beetroot.jpeg"><img src="beetroot.jpeg" alt="beet root" /></a>
+                <h3>beetroot</h3>
+                <h3>&#8377; 120/ltr</h3>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="grocery" data-url="potato.jpeg" data-title="potato" data-price="80/kg">
+                <a target="_blank" href="potato.jpeg"><img src="potato.jpeg" alt="potato" /></a>
+                <h3>potato</h3>
+                <h3>&#8377; 80/kg</h3>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const container = e.target.closest('.grocery');
+                if (container) {
+                    const itemData = {
+                        url: container.dataset.url || '',
+                        title: container.dataset.title || '',
+                        price: container.dataset.price || ''
+                    };
+                    sessionStorage.setItem('itemData', JSON.stringify(itemData));
+                    window.location.href = 'orderpage.html';
+                } else {
+                    console.error('No valid container found for this button click.');
+                }
+            });
+        });
+
+        document.getElementById("mySearch").addEventListener("input", function () {
+            let filter = this.value.toLowerCase().trim();
+            let items = document.querySelectorAll(".grocery");
+
+            if (filter === "") {
+                window.location.href = "grocery.html";
+            }
+
+            items.forEach(item => {
+                let title = item.dataset.title.toLowerCase();
+                item.style.display = title.includes(filter) ? "block" : "none";
+            });
+        });
+    </script>
+</body>
+</html>
