@@ -66,7 +66,7 @@
             object-fit: cover;
             border-radius: 10px;
         }
-        .order-now {
+        .add-to-cart {
             background: #28a745;
             color: white;
             border: none;
@@ -75,14 +75,14 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        .order-now:hover {
+        .add-to-cart:hover {
             background: #218838;
         }
     </style>
 </head>
 <body>
     <nav>
-        <h1>Grocery Items</h1>&nbsp;
+        <h1>Ice Creams</h1>&nbsp;
         <img src="Images/Logo.jpeg" alt="logo">
         <div class="search-container">
             <input type="text" id="mySearch" placeholder="Search...">
@@ -91,43 +91,43 @@
     </nav>
 
     <section id="groceries" class="box">
-        <h3><b><strong> Available Groceries</strong></b></h3>
+        <h3><b><strong> Available Ice Creams</strong></b></h3>
         <div class="grocery-container">
-            <div class="grocery" data-url="rice.jpeg" data-title="Rice" data-price="50/kg">
-                <a target="_blank" href="rice.jpeg"><img src="rice.jpeg" alt="Rice" /></a>
-                <h3>Rice</h3>
-                <h3>&#8377; 50/kg</h3>
-                <button class="order-now">Order Now</button>
+            <div class="grocery" data-url="vanilla.jpeg" data-title="Vanilla" data-price="50/cup">
+                <a target="_blank" href="vanilla.jpeg"><img src="vanilla.jpeg" alt="Vanilla" /></a>
+                <h3>Vanilla</h3>
+                <h3>&#8377; 50/cup</h3>
+                <button class="add-to-cart">Add to Cart</button>
             </div>
-            <div class="grocery" data-url="wheat.jpeg" data-title="Wheat" data-price="40/kg">
-                <a target="_blank" href="wheat.jpeg"><img src="wheat.jpeg" alt="Wheat" /></a>
-                <h3>Wheat</h3>
-                <h3>&#8377; 40/kg</h3>
-                <button class="order-now">Order Now</button>
+            <div class="grocery" data-url="chocolate.jpeg" data-title="Chocolate" data-price="60/cup">
+                <a target="_blank" href="chocolate.jpeg"><img src="chocolate.jpeg" alt="Chocolate" /></a>
+                <h3>Chocolate</h3>
+                <h3>&#8377; 60/cup</h3>
+                <button class="add-to-cart">Add to Cart</button>
             </div>
-            <div class="grocery" data-url="sugar.jpeg" data-title="Sugar" data-price="45/kg">
-                <a target="_blank" href="sugar.jpeg"><img src="sugar.jpeg" alt="Sugar" /></a>
-                <h3>Sugar</h3>
-                <h3>&#8377; 45/kg</h3>
-                <button class="order-now">Order Now</button>
+            <div class="grocery" data-url="strawberry.jpeg" data-title="Strawberry" data-price="55/cup">
+                <a target="_blank" href="strawberry.jpeg"><img src="strawberry.jpeg" alt="Strawberry" /></a>
+                <h3>Strawberry</h3>
+                <h3>&#8377; 55/cup</h3>
+                <button class="add-to-cart">Add to Cart</button>
             </div>
-            <div class="grocery" data-url="oil.jpeg" data-title="Cooking Oil" data-price="120/ltr">
-                <a target="_blank" href="oil.jpeg"><img src="oil.jpeg" alt="Cooking Oil" /></a>
-                <h3>Cooking Oil</h3>
-                <h3>&#8377; 120/ltr</h3>
-                <button class="order-now">Order Now</button>
+            <div class="grocery" data-url="butterscotch.jpeg" data-title="Butterscotch" data-price="65/cup">
+                <a target="_blank" href="butterscotch.jpeg"><img src="butterscotch.jpeg" alt="Butterscotch" /></a>
+                <h3>Butterscotch</h3>
+                <h3>&#8377; 65/cup</h3>
+                <button class="add-to-cart">Add to Cart</button>
             </div>
-            <div class="grocery" data-url="dal.jpeg" data-title="Dal" data-price="80/kg">
-                <a target="_blank" href="dal.jpeg"><img src="dal.jpeg" alt="Dal" /></a>
-                <h3>Dal</h3>
-                <h3>&#8377; 80/kg</h3>
-                <button class="order-now">Order Now</button>
+            <div class="grocery" data-url="mango.jpeg" data-title="Mango" data-price="50/cup">
+                <a target="_blank" href="mango.jpeg"><img src="mango.jpeg" alt="Mango" /></a>
+                <h3>Mango</h3>
+                <h3>&#8377; 50/cup</h3>
+                <button class="add-to-cart">Add to Cart</button>
             </div>
         </div>
     </section>
 
     <script>
-        document.querySelectorAll('.order-now').forEach(button => {
+        document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', (e) => {
                 const container = e.target.closest('.grocery');
                 if (container) {

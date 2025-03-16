@@ -66,7 +66,7 @@
             object-fit: cover;
             border-radius: 10px;
         }
-        .order-now {
+        .add-to-cart {
             background: #28a745;
             color: white;
             border: none;
@@ -75,15 +75,15 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        .order-now:hover {
+        .add-to-cart:hover {
             background: #218838;
         }
     </style>
 </head>
 <body>
     <nav>
-        <h1>Grocery Items</h1>&nbsp;
-        <img src="Images/Logo.jpeg" alt="logo">
+        <h1>Grocery Store</h1>
+        <img src="/Images/Logo.jpeg" alt="logo">
         <div class="search-container">
             <input type="text" id="mySearch" placeholder="Search...">
             <i class="fa fa-search"></i>
@@ -91,70 +91,65 @@
     </nav>
 
     <section id="groceries" class="box">
-        <h3><b><strong> Available Groceries</strong></b></h3>
+        <h3><b><strong>Available Products</strong></b></h3>
         <div class="grocery-container">
-            <div class="grocery" data-url="rice.jpeg" data-title="Rice" data-price="50/kg">
-                <a target="_blank" href="rice.jpeg"><img src="rice.jpeg" alt="Rice" /></a>
-                <h3>Rice</h3>
-                <h3>&#8377; 50/kg</h3>
-                <button class="order-now">Order Now</button>
-            </div>
-            <div class="grocery" data-url="wheat.jpeg" data-title="Wheat" data-price="40/kg">
-                <a target="_blank" href="wheat.jpeg"><img src="wheat.jpeg" alt="Wheat" /></a>
-                <h3>Wheat</h3>
-                <h3>&#8377; 40/kg</h3>
-                <button class="order-now">Order Now</button>
-            </div>
-            <div class="grocery" data-url="sugar.jpeg" data-title="Sugar" data-price="45/kg">
-                <a target="_blank" href="sugar.jpeg"><img src="sugar.jpeg" alt="Sugar" /></a>
-                <h3>Sugar</h3>
-                <h3>&#8377; 45/kg</h3>
-                <button class="order-now">Order Now</button>
-            </div>
-            <div class="grocery" data-url="oil.jpeg" data-title="Cooking Oil" data-price="120/ltr">
-                <a target="_blank" href="oil.jpeg"><img src="oil.jpeg" alt="Cooking Oil" /></a>
-                <h3>Cooking Oil</h3>
-                <h3>&#8377; 120/ltr</h3>
-                <button class="order-now">Order Now</button>
-            </div>
-            <div class="grocery" data-url="dal.jpeg" data-title="Dal" data-price="80/kg">
-                <a target="_blank" href="dal.jpeg"><img src="dal.jpeg" alt="Dal" /></a>
-                <h3>Dal</h3>
-                <h3>&#8377; 80/kg</h3>
-                <button class="order-now">Order Now</button>
-            </div>
-        </div>
+            <!-- Fruits & Vegetables -->
+            <div class="grocery" data-title="Apple" data-price="100/kg"><img src="/Images/apples.jpg" alt="Apple"><h3>Apple</h3><h3>&#8377; 100/kg</h3><button class="add-to-cart">Add to Cart</button></div>
+            <div class="grocery" data-title="Banana" data-price="40/kg"><img src="banana.jpeg" alt="Banana"><h3>Banana</h3><h3>&#8377; 40/kg</h3><button class="add-to-cart">Add to Cart</button></div>
+            <div class="grocery" data-title="Carrot" data-price="45/kg"><img src="carrot.jpeg" alt="Carrot"><h3>Carrot</h3><h3>&#8377; 45/kg</h3><button class="add-to-cart">Add to Cart</button></div>
+            <div class="grocery" data-title="Beetroot" data-price="120/kg"><img src="beetroot.jpeg" alt="Beetroot"><h3>Beetroot</h3><h3>&#8377; 120/kg</h3><button class="add-to-cart">Add to Cart</button></div>
+            <div class="grocery" data-title="Potato" data-price="80/kg"><img src="potato.jpeg" alt="Potato"><h3>Potato</h3><h3>&#8377; 80/kg</h3><button class="add-to-cart">Add to Cart</button></div>
+
+            <!-- Ice Creams -->
+            <div class="grocery" data-title="Vanilla" data-price="50/cup"><img src="vanilla.jpeg" alt="Vanilla"><h3>Vanilla</h3><h3>&#8377; 50/cup</h3><button class="add-to-cart">Add to Cart</button></div>
+            <div class="grocery" data-title="Chocolate" data-price="60/cup"><img src="chocolate.jpeg" alt="Chocolate"><h3>Chocolate</h3><h3>&#8377; 60/cup</h3><button class="add-to-cart">Add to Cart</button></div>
+            <div class="grocery" data-title="Strawberry" data-price="55/cup"><img src="strawberry.jpeg" alt="Strawberry"><h3>Strawberry</h3><h3>&#8377; 55/cup</h3><button class="add-to-cart">Add to Cart</button></div>
+            <div class="grocery" data-title="Butterscotch" data-price="65/cup"><img src="butterscotch.jpeg" alt="Butterscotch"><h3>Butterscotch</h3><h3>&#8377; 65/cup</h3><button class="add-to-cart">Add to Cart</button></div>
+            <div class="grocery" data-title="Mango" data-price="50/cup"><img src="mango.jpeg" alt="Mango"><h3>Mango</h3><h3>&#8377; 50/cup</h3><button class="add-to-cart">Add to Cart</button></div>
+      
+        <!-- Cool Drinks -->
+        <div class="grocery" data-title="Coca Cola" data-price="40/bottle"><img src="coca_cola.jpeg" alt="Coca Cola"><h3>Coca Cola</h3><h3>&#8377; 40/bottle</h3><button class="add-to-cart">Add to Cart</button></div>
+        <div class="grocery" data-title="Pepsi" data-price="40/bottle"><img src="pepsi.jpeg" alt="Pepsi"><h3>Pepsi</h3><h3>&#8377; 40/bottle</h3><button class="add-to-cart">Add to Cart</button></div>
+        <div class="grocery" data-title="Sprite" data-price="35/bottle"><img src="sprite.jpeg" alt="Sprite"><h3>Sprite</h3><h3>&#8377; 35/bottle</h3><button class="add-to-cart">Add to Cart</button></div>
+        <div class="grocery" data-title="Fanta" data-price="45/bottle"><img src="fanta.jpeg" alt="Fanta"><h3>Fanta</h3><h3>&#8377; 45/bottle</h3><button class="add-to-cart">Add to Cart</button></div>
+        <div class="grocery" data-title="Mountain Dew" data-price="50/bottle"><img src="mountain_dew.jpeg" alt="Mountain Dew"><h3>Mountain Dew</h3><h3>&#8377; 50/bottle</h3><button class="add-to-cart">Add to Cart</button></div>
+        
+        <!-- Snacks -->
+        <div class="grocery" data-title="chips" data-price="20/pack"><img src="/Images/chips.jpeg" alt="Lays"><h3>Lays</h3><h3>&#8377; 20/pack</h3><button class="add-to-cart">Add to Cart</button></div>
+        <div class="grocery" data-title="cookies" data-price="25/pack"><img src="cookies.jpeg" alt="KurKure"><h3>KurKure</h3><h3>&#8377; 25/pack</h3><button class="add-to-cart">Add to Cart</button></div>
+        <div class="grocery" data-title="popcorn" data-price="30/pack"><img src="popcorn.jpeg" alt="Bingo"><h3>Bingo</h3><h3>&#8377; 30/pack</h3><button class="add-to-cart">Add to Cart</button></div>
+        <div class="grocery" data-title="nuts" data-price="35/pack"><img src="nuts.jpeg" alt="Oreo"><h3>Oreo</h3><h3>&#8377; 35/pack</h3><button class="add-to-cart">Add to Cart</button></div>
+        <div class="grocery" data-title="namkeen" data-price="40/pack"><img src="namkeen" alt="KitKat"><h3>KitKat</h3><h3>&#8377; 40/pack</h3><button class="add-to-cart">Add to Cart</button></div>
+        
+        <!-- Daicookies -->
+        <div class="grocery" data-title="Milk" nut-price="50/litre"><img src="milk.jpeg" alt="Milk"><h3>Milk</h3><h3>&#8377; 50/litre</h3><button class="add-to-cart">Add to Cart</button></div>
+        <div class="grocery" data-title="Cheese" data-price="120/pack"><img src="cheese.jpeg" alt="Cheese"><h3>Cheese</h3><h3>&#8377; 120/pack</h3><button class="add-to-cart">Add to Cart</button></div>
+        <div class="grocery" data-title="Butter" data-price="150/pack"><img src="butter.jpeg" alt="Butter"><h3>Butter</h3><h3>&#8377; 150/pack</h3><button class="add-to-cart">Add to Cart</button></div>
+        <div class="grocery" data-title="Yogurt" data-price="40/cup"><img src="yogurt.jpeg" alt="Yogurt"><h3>Yogurt</h3><h3>&#8377; 40/cup</h3><button class="add-to-cart">Add to Cart</button></div>
+        <div class="grocery" data-title="Paneer" data-price="200/kg"><img src="paneer.jpeg" alt="Paneer"><h3>Paneer</h3><h3>&#8377; 200/kg</h3><button class="add-to-cart">Add to Cart</button></div>
+        
+    </div>
     </section>
 
     <script>
-        document.querySelectorAll('.order-now').forEach(button => {
+        document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', (e) => {
                 const container = e.target.closest('.grocery');
                 if (container) {
                     const itemData = {
-                        url: container.dataset.url || '',
                         title: container.dataset.title || '',
                         price: container.dataset.price || ''
                     };
                     sessionStorage.setItem('itemData', JSON.stringify(itemData));
                     window.location.href = 'orderpage.html';
-                } else {
-                    console.error('No valid container found for this button click.');
                 }
             });
         });
 
         document.getElementById("mySearch").addEventListener("input", function () {
             let filter = this.value.toLowerCase().trim();
-            let items = document.querySelectorAll(".grocery");
-
-            if (filter === "") {
-                window.location.href = "grocery.html";
-            }
-
-            items.forEach(item => {
-                let title = item.dataset.title.toLowerCase();
-                item.style.display = title.includes(filter) ? "block" : "none";
+            document.querySelectorAll(".grocery").forEach(item => {
+                item.style.display = item.dataset.title.toLowerCase().includes(filter) ? "block" : "none";
             });
         });
     </script>
