@@ -1,11 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mani Chand</title>
-</head>
-<body>
-    <p>dsgbsrgn</p>
+ <link rel="stylesheet" href="style.css">
+  <title>Grocery Delivery</title>
+  </head>
+    <body>
+  <h1>Grocery Delivery</h1>
+  <img src="/Images/Logo.jpeg" alt="Grocery Delivery Logo">
+  <div class="container">
+    <div class="tabs">
+      <button class="tab-button active" data-target="login">Login</button>
+      <button class="tab-button" data-target="signup">Signup</button>
+    </div>
+    <div id="login" class="form-container active">
+      <form action="actionpage.php" method="post">
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <a href="#">Forgot password?</a><br>
+        <button type="submit" name=login value=login>Login</button>
+      </form>
+      <div class="signup-link">
+        Not a member? <a href="#" data-target="signup" class="tab-link"><b>Signup now</b></a>
+      </div>
+    </div>
+    <div id="signup" class="form-container">
+      <form action="actionpage.php" method="post">
+        <input type="text" name="fullname1" placeholder="Full Name" required>
+        <input type="email" name="email1" placeholder="Email Address" required>
+        <input type="password" name="password1" placeholder="Password" required>
+        <input type="password" name="confirm_password1" placeholder="Confirm Password" required>
+        <button type="submit" name= "signup1" value="signup" >Signup</button>
+      </form>
+      <div class="signup-link">
+        Already a member? <a href="#" data-target="login" class="tab-link">Login now</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const formContainers = document.querySelectorAll(".form-container");
+    const tabLinks = document.querySelectorAll(".tab-link");
+
+    tabButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const target = button.getAttribute("data-target");
+
+        tabButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        formContainers.forEach(container => {
+          container.classList.remove("active");
+          if (container.id === target) container.classList.add("active");
+        });
+      });
+    });
+
+    tabLinks.forEach(link => {
+      link.addEventListener("click", event => {
+        event.preventDefault();
+        const target = link.getAttribute("data-target");
+
+        document.querySelector(`button[data-target="${target}"]`).click();
+      });
+    });
+  </script>
 </body>
-</html>cd 
+</html>
