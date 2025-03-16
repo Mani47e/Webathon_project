@@ -134,6 +134,7 @@
     </section>
 
     <!-- Product Section -->
+       
     <section class="products py-4 bg-light">
         <div class="container">
             <h2 class="mb-4">Recommended Products</h2>
@@ -145,7 +146,7 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Fresh Apples</h5>
                             <p class="card-text">₹150/kg</p>
-                            <button class="btn btn-success">Add to Cart</button>
+                            <button class="btn btn-success add-to-cart" onclick="addToCart(this)">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -156,7 +157,7 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Kurkure</h5>
                             <p class="card-text">₹20/Packet</p>
-                            <button class="btn btn-success">Add to Cart</button>
+                            <button class="btn btn-success add-to-cart" onclick="addToCart(this)">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -167,7 +168,7 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Organic Milk</h5>
                             <p class="card-text">₹50/L</p>
-                            <button class="btn btn-success">Add to Cart</button>
+                            <button class="btn btn-success add-to-cart" onclick="addToCart(this)">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -178,10 +179,12 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Maggi</h5>
                             <p class="card-text">₹30/Packet</p>
-                            <button class="btn btn-success">Add to Cart</button>
+                            <button class="btn btn-success add-to-cart" onclick="addToCart(this)">Add to Cart</button>
                         </div>
                     </div>
                 </div>
+
+ 
 
             </div>
         </div>
@@ -291,6 +294,20 @@ function clearSearch() {
             }
         };
 
+
+//Add to cart added option
+function addToCart(button) {
+    if (button.innerText === "Add to Cart") {
+        button.innerText = "Added";
+        button.classList.add("added-effect");
+    } else {
+        button.innerText = "Add to Cart";
+        button.classList.remove("added-effect");
+    }
+}
+
+
+ 
     </script>
 
 </body>

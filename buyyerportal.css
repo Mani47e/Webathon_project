@@ -55,6 +55,45 @@ nav {
     text-align: center;
     border-radius: 50%;
 }
+ 
+.search-bar input {
+    transition: all 0.3s ease-in-out;
+    border: 2px solid #28a745;
+    padding: 10px 15px;
+    background-color: white;
+    font-size: 16px;
+    width: 100%;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar input:hover {
+    border-color: #ffcc00;
+    background-color: #f8f9fa;
+    box-shadow: 0px 0px 10px rgba(255, 204, 0, 0.7);
+}
+
+.search-bar input:focus {
+    border-color: #28a745;
+    background-color: #e6ffe6;
+    box-shadow: 0 0 12px rgba(40, 167, 69, 0.8);
+    outline: none;
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 204, 0, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(40, 167, 69, 0.9);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 204, 0, 0.7);
+    }
+}
+
+.search-bar input:focus {
+    animation: glow 1.5s infinite alternate;
+}
 
 #cart-button {
     display: flex;
@@ -72,11 +111,6 @@ nav {
     height: 32px;
 }
  
-
-
-
-
-
 
 /* Hamburger Menu */
 .hamburger {
@@ -121,6 +155,15 @@ nav {
     height: 200px;
     object-fit: cover;
     border-radius: 8px;
+}
+.card {
+    transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    cursor:pointer;
 }
 
 
@@ -179,6 +222,57 @@ nav {
 .service-box button:hover {
     background-color: #218838;
 }
+
+
+.btn-success {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    padding: 12px 18px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn-success::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+    transition: all 0.4s ease-in-out;
+}
+
+.btn-success:hover::after {
+    left: 100%;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.08);
+    box-shadow: 0 5px 20px rgba(40, 167, 69, 0.6);
+}
+
+.btn-success:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 10px rgba(40, 167, 69, 0.5);
+}
+
+
+.added-effect {
+    background-color: white !important; 
+    color: black  !important;
+    transform: scale(1.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+
 
 /* Cart Section */
 #cart {
