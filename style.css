@@ -14,9 +14,10 @@ body {
     text-align: center;
   }
   img {
-    margin-top: 0;
+    margin: 15px auto;
     height: 200px;
     width: 200px;
+    object-fit: contain;
   }
   .container {
     background: white;
@@ -38,20 +39,23 @@ body {
     cursor: pointer;
     font-weight: bold;
     transition: background 0.3s;
-    border-radius:8px;
-
+    border-radius:10px;
+    margin-right:10px;
+    margin-left:10px;
   }
+ 
   .tabs button.active {
     background: #000000;
     color: white;
   }
+
   .form-container {
     display: none;
-
+  
   }
   .form-container.active {
     display: block;
- 
+  
   }
   .form-container input {
     width: 95%;
@@ -59,7 +63,7 @@ body {
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius:15px;
- 
+  
   }
   .form-container a {
     display: block;
@@ -85,12 +89,35 @@ body {
     color:#000000;
     border:1px solid #000000;
   }
+  
+  .styled-select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    background:white;
+    color:rgb(118, 118, 118);
+    font-size: 0.9em;
+    cursor: pointer;
+  }
+  .styled-select:hover {
+    background: white;
+    color:#000000;
+    border:1px solid #000000;
+  }
+  
   .signup-link {
     text-align: center;
     margin-top: 10px;
     font-size: 0.9em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
   }
   .signup-link a {
     color: #000000;
     text-decoration: none;
+    font-weight: bold;
   }
