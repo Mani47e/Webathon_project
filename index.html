@@ -13,7 +13,7 @@
       <button class="tab-button" data-target="signup">Signup</button>
     </div>
     <div id="login" class="form-container active">
-      <form action="actionpage.php" method="post">
+      <form action="login.php" method="post">
         <input type="email" name="email" placeholder="Email Address" required>
         <input type="password" name="password" placeholder="Password" required><br>
         <a href="#">Forgot password?</a><br>
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div id="signup" class="form-container">
-      <form action="actionpage.php" method="post">
+      <form action="login.php" method="post">
         <input type="text" name="fullname1" placeholder="Full Name" required>  
         <select name="user_type" required class="styled-select">
             <option value="">Select Role</option>
@@ -33,6 +33,7 @@
         </select>        
         <input type="email" name="email1" placeholder="Email Address" required>
         <input type="password" name="password1" placeholder="Password" required>
+       
         <input type="password" name="confirm_password1" placeholder="Confirm Password" required>
         <button type="submit" name= "signup1" value="signup" >Signup</button>
       </form>
