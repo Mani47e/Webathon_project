@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #28a745;
+            padding: 15px 20px;
+            color: white;
+        }
+        nav h1 {
+            margin: 0;
+        }
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .input-group {
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        .input-group label {
+            font-weight: bold;
+        }
+        .input-group input, .input-group textarea {
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn:hover {
+            background: #218838;
+        }
+        .product-list {
+            margin-top: 20px;
+        }
+        .product {
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .delete-btn, .update-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .update-btn {
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>Seller Dashboard</h1>
+        <div class="nav-links">
+            <a href="#order-list"><i class="fas fa-bell"></i> Order Management</a>
+            <a href="#transaction-list"><i class="fas fa-money-bill-wave"></i> Transaction History</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Add Product</h2>
+        <div class="input-group">
+            <label for="product-name">Product Name</label>
+            <input type="text" id="product-name">
+        </div>
+        <div class="input-group">
+            <label for="product-price">Price (₹)</label>
+            <input type="number" id="product-price">
+        </div>
+        <div class="input-group">
+            <label for="product-image">Product Image</label>
+            <input type="file" id="product-image" accept="image/*">
+        </div>
+        <div class="input-group">
+            <label for="product-description">Description</label>
+            <textarea id="product-description"></textarea>
+        </div>
+        <button class="btn" onclick="addProduct()">Add Product</button>
+
+        <h2>Available Products</h2>
+        <div class="product-list" id="product-list"></div>
+    </div>
+
+    <script>
+        let products = JSON.parse(localStorage.getItem('products')) || [];
+
+        function addProduct() {
+            const name = document.getElementById('product-name').value.trim();
+            const price = document.getElementById('product-price').value.trim();
+            const imageInput = document.getElementById('product-image');
+            const description = document.getElementById('product-description').value.trim();
+            
+            if (name === "" || price === "" || !imageInput.files.length) {
+                alert("Please enter product name, price, and select an image");
+                return;
+            }
+            
+            const imageFile = imageInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const image = event.target.result;
+                products.push({ name, price, image, description });
+                localStorage.setItem('products', JSON.stringify(products));
+                displayProducts();
+                
+                // Clear input fields after adding product
+                document.getElementById('product-name').value = "";
+                document.getElementById('product-price').value = "";
+                document.getElementById('product-image').value = "";
+                document.getElementById('product-description').value = "";
+            };
+            reader.readAsDataURL(imageFile);
+        }
+
+        function deleteProduct(index) {
+            products.splice(index, 1);
+            localStorage.setItem('products', JSON.stringify(products));
+            displayProducts();
+        }
+
+        function displayProducts() {
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = "";
+            products.forEach((product, index) => {
+                productList.innerHTML += `
+                    <div class="product">
+                        <img src="${product.image}" alt="Product Image" width="50">
+                        <span>${product.name} - ₹${product.price}</span>
+                        <button class="delete-btn" onclick="deleteProduct(${index})">Delete</button>
+                    </div>
+                `;
+            });
+        }
+
+        displayProducts();
+    </script>
+</body>
+</html>

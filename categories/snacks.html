@@ -127,22 +127,7 @@
     </section>
 
     <script>
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const container = e.target.closest('.grocery');
-                if (container) {
-                    const itemData = {
-                        url: container.dataset.url || '',
-                        title: container.dataset.title || '',
-                        price: container.dataset.price || ''
-                    };
-                    sessionStorage.setItem('itemData', JSON.stringify(itemData));
-                    window.location.href = 'orderpage.html';
-                } else {
-                    console.error('No valid container found for this button click.');
-                }
-            });
-        });
+        
 
         document.getElementById("mySearch").addEventListener("input", function () {
             let filter = this.value.toLowerCase().trim();
@@ -157,6 +142,97 @@
                 item.style.display = title.includes(filter) ? "block" : "none";
             });
         });
+
+     // Initialize cart array from sessionStorage
+let cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', (e) => {
+        const container = e.target.closest('.grocery');
+        if (container) {
+            const itemTitle = container.dataset.title || '';
+            const itemPrice = parseFloat(container.dataset.price) || 0;
+
+            // Find item in cart
+            const existingItemIndex = cartItems.findIndex(item => item.title === itemTitle);
+
+            if (existingItemIndex !== -1) {
+                // If item exists, remove it
+                cartItems.splice(existingItemIndex, 1);
+                e.target.textContent = "Add to Cart"; // Revert button text
+                e.target.style.background = "#28a745"; // Reset color
+            } else {
+                // If item doesn't exist, add it
+                cartItems.push({ title: itemTitle, price: itemPrice, quantity: 1 });
+                e.target.textContent = "Added"; // Change button text
+                e.target.style.background = "#6c757d"; // Grey out button
+            }
+
+            // Save updated cart to sessionStorage
+            sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+            // Update cart display
+            updateCartDisplay();
+        }
+    });
+});
+
+// Ensure buttons keep their state on page reload
+document.addEventListener('DOMContentLoaded', () => {
+    cartItems.forEach(item => {
+        const button = [...document.querySelectorAll('.add-to-cart')].find(btn => 
+            btn.closest('.grocery').dataset.title === item.title
+        );
+        if (button) {
+            button.textContent = "Added";
+            button.style.background = "#6c757d";
+        }
+    });
+
+    updateCartDisplay();
+});
+
+
+// Ensure button stays "Added" if item is already in cart (on page reload)
+document.addEventListener('DOMContentLoaded', () => {
+    cartItems.forEach(item => {
+        const button = [...document.querySelectorAll('.add-to-cart')].find(btn => 
+            btn.closest('.grocery').dataset.title === item.title
+        );
+        if (button) {
+            button.textContent = "Added";
+            button.disabled = true;
+            button.style.background = "#6c757d";
+        }
+    });
+
+    updateCartDisplay();
+});
+
+
+
+// Increase Quantity
+function increaseQuantity(index) {
+    if (cartItems[index]) { // Check if item exists
+        cartItems[index].quantity += 1;
+        sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+        updateCartDisplay();
+    }
+}
+
+// Decrease Quantity
+function decreaseQuantity(index) {
+    if (cartItems[index]) { // Check if item exists
+        if (cartItems[index].quantity > 1) {
+            cartItems[index].quantity -= 1;
+        } else {
+            cartItems.splice(index, 1); // Remove item if quantity is 0
+        }
+        sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+        updateCartDisplay();
+    }
+    }
+
     </script>
 </body>
 </html>

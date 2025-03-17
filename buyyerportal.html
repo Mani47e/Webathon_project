@@ -76,41 +76,125 @@
     </div>
   </section>
 
-  <section class="categories py-4">
-    <div class="container">
-      <h2 class="mb-4">Shop by Categories</h2>
-      <div class="row">
-        <!-- Category Cards -->
-        <div class="col-md-3 mb-4" *ngFor="let category of categories">
-          <div class="card text-center">
-            <img src="Images/{{category.image}}" class="card-img-top" alt="{{category.alt}}">
-            <div class="card-body">
-              <h5 class="card-title">{{category.name}}</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- Categories Section -->
+    <section class="categories py-4">
+        <div class="container">
+            <h2 class="mb-4">Shop by Categories</h2>
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="./Images/fruits.png" class="card-img-top" alt="Fruits">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Fruits & Vegetables</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="./Images/dairy.jpg" class="card-img-top" alt="Dairy">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Dairy Products</h5>
+                        </div>
+                    </div>
+                </div>
 
-  <section class="products py-4 bg-light">
-    <div class="container">
-      <h2 class="mb-4">Recommended Products</h2>
-      <div class="row">
-        <!-- Product Cards -->
-        <div class="col-md-3 mb-4" *ngFor="let product of products">
-          <div class="card text-center">
-            <img src="Images/{{product.image}}" class="card-img-top" alt="{{product.alt}}">
-            <div class="card-body">
-              <h5 class="card-title">{{product.name}}</h5>
-              <p class="card-text">{{product.price}}</p>
-              <button class="btn btn-success add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="./Images/snackss.jpeg" class="card-img-top" alt="Snacks & Munchies">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Snacks & Munchies</h5>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="./Images/soft-drinks.png" class="card-img-top" alt="Drinks">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Cold Drinks & Juices</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="./Images/ice.avif" class="card-img-top" alt="Ice cream">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Ice Cream</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="./Images/see-more.png" class="card-img-top" alt="Drinks">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">See ALL</h5>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Product Section -->
+       
+    <section class="products py-4 bg-light">
+        <div class="container">
+            <h2 class="mb-4">Recommended Products</h2>
+            <div class="row">
+                
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="./Images/apples.jpg" class="card-img-top" alt="Apple">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Fresh Apples</h5>
+                            <p class="card-text">₹150/kg</p>
+                            <button class="btn btn-success add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="./Images/kurkure.jpg" class="card-img-top" alt="Milk">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Kurkure</h5>
+                            <p class="card-text">₹20/Packet</p>
+                            <button class="btn btn-success add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="./Images/milk.webp" class="card-img-top" alt="Milk">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Organic Milk</h5>
+                            <p class="card-text">₹50/L</p>
+                            <button class="btn btn-success add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="./Images/maggi.webp" class="card-img-top" alt="Milk">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Maggi</h5>
+                            <p class="card-text">₹30/Packet</p>
+                            <button class="btn btn-success add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+ 
+
+            </div>
+        </div>
+    </section>
 
   <footer class="bg-dark text-white py-3">
     <div class="container text-center">
