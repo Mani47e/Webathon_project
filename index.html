@@ -8,8 +8,8 @@
 </head>
 <body>
 
-  <h1>Grocery Delivery</h1>
-  <img src="/Images/Logo.jpeg" alt="Grocery Delivery Logo">
+<a href="buyyerportal.html" style="color: black; text-decoration: none;" ><h1>Grocery Delivery</h1></a>
+ <a href="buyyerportal.html"><img src="/Images/Logo.jpeg" alt="Grocery Delivery Logo"></a>
 
   <div class="container">
     <div class="tabs">
@@ -19,21 +19,50 @@
 
     <!-- Login Form -->
     <div id="login" class="form-container active">
-      <form action="login.php" method="post">
-        <input type="email" name="email" placeholder="Email Address" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <br>
-        <a href="#">Forgot password?</a><br>
-        <button type="submit" name="login" value="login">Login</button>
+      <form> 
+          <input type="email" name="email" placeholder="Email Address" required>
+  
+          <div class="user-type" style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px;">
+              <label style="display: flex; align-items: center; gap: 5px;">
+                  <input type="radio" id="buyer" name="userType" value="buyer" required> Buyer
+              </label>
+              <label style="display: flex; align-items: center; gap: 5px;">
+                  <input type="radio" id="seller" name="userType" value="seller" required> Seller
+              </label>
+          </div>
+  
+          <input type="password" name="password" placeholder="Password" required>
+          <br>
+          <a href="#">Forgot password?</a><br>
+  
+          <button type="submit" name="signup1" id="loginButton" value="signup">Login</button>
+  
       </form>
       <div class="signup-link">
-        Not a member? <a href="#" data-target="signup" class="tab-link"><b>Signup now</b></a>
+          Not a member? <a href="#" data-target="signup" class="tab-link"><b>Signup now</b></a>
       </div>
-    </div>
-
+  </div>
+  
+  <script>
+      document.getElementById('loginButton').addEventListener('click', function(event) {
+          event.preventDefault(); // Prevent default form submission
+  
+          const userType = document.querySelector('input[name="userType"]:checked');
+          if (userType) {
+              if (userType.value === 'buyer') {
+                  window.location.href = 'buyyerportal.html';
+              } else if (userType.value === 'seller') {
+                  window.location.href = 'sellerportal.html';
+              }
+          } else {
+              alert('Please select Buyer or Seller.');
+          }
+      });
+  
+  </script>
     <!-- Signup Form -->
     <div id="signup" class="form-container">
-      <form action="login.php" method="post">
+      
         <input type="text" name="fullname1" placeholder="Full Name" required>
         
         <select name="user_type" required class="styled-select">
@@ -46,7 +75,7 @@
         <input type="password" name="password1" placeholder="Password" required>
         <input type="password" name="confirm_password1" placeholder="Confirm Password" required>
 
-        <button type="submit" name="signup1" value="signup">Signup</button>
+        <a href="buyyerportal.html"><button type="submit" name="signup1" value="signup">Signup</button></a>
       </form>
 
       <div class="signup-link">

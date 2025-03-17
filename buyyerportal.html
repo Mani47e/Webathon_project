@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buyer Portal</title>
-  <link rel="stylesheet" href="buyerportal.css">
+  <link rel="stylesheet" href="buyyerportal.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     #clear-search {
@@ -16,6 +16,13 @@
       color: #333;
       display: none;
     }
+    .header{
+      position: relative;
+      top:102px;
+      z-index: 1;
+      width: 100%;
+    
+    }
     .cart-icon {
       height: 24px;
       margin-left: 5px;
@@ -24,13 +31,38 @@
       background-color: #28a745;
       color: white;
     }
+    .logo
+  {
+    position: relative;
+    right: 100px;
+
+    /* margin-right: 200px;   */
+    /* padding-right: 400px; */
+  }
+
+  .location{
+    position: relative;
+    right: 50px;
+  }
+  .search-bar{
+    position: relative;
+    right: 3  0px;
+  }
+  .account{
+    position: relative;
+    left: 50px;
+  }
+  #cart-button{
+    position: relative;
+    left: 100px;
+  }
   </style>
 </head>
 <body>
   <header class="bg-success text-white p-3">
-    <div class="container d-flex justify-content-between align-items-center">
+    <div class="container d-flex justify-content-between align-items-center ">
       <div class="logo">
-        <img src="Images/Logo.jpeg" alt="Logo" height="40">
+        <img src="Images/Logo.jpeg" alt="Logo" height="70">
       </div>
       <div class="location d-flex align-items-center">
         <label for="location" class="mr-2">Deliver to:</label>
@@ -51,14 +83,14 @@
       <div class="account position-relative">
         <button class="btn btn-outline-light dropdown-toggle" onclick="toggleDropdown()">Account</button>
         <ul class="dropdown-menu" id="account-dropdown">
-          <li><a href="#order-history" class="dropdown-item">Order History</a></li>
-          <li><a href="#contact" class="dropdown-item">Contact</a></li>
-          <li><a href="#" class="dropdown-item">Logout</a></li>
+          <li><a href="orderhistory.html" class="dropdown-item">Order History</a></li>
+          <li><a href="#footer" class="dropdown-item">Contact</a></li>
+          <li><a href="index.html" class="dropdown-item">Logout</a></li>
         </ul>
       </div>
       <div class="user-actions">
         <button class="btn btn-outline-light d-flex align-items-center" id="cart-button">
-          <img src="Images/shopping-cart.png" alt="Cart" class="cart-icon">
+         <a href="cartitems.html"><img src="Images/shopping-cart.png" alt="Cart" class="cart-icon"></a>
         </button>
       </div>
     </div>
@@ -82,57 +114,57 @@
             <h2 class="mb-4">Shop by Categories</h2>
             <div class="row">
                 <div class="col-md-3 mb-4">
-                    <div class="card">
+                    <a href="./categories/fruits.html" style="color: black;"><div class="card">
                         <img src="./Images/fruits.png" class="card-img-top" alt="Fruits">
                         <div class="card-body text-center">
                             <h5 class="card-title">Fruits & Vegetables</h5>
                         </div>
-                    </div>
+                    </div></a>
                 </div>
                 <div class="col-md-3 mb-4">
-                    <div class="card">
+                    <a href="./categories/dairy.html" style="color:black"><div class="card">
                         <img src="./Images/dairy.jpg" class="card-img-top" alt="Dairy">
                         <div class="card-body text-center">
                             <h5 class="card-title">Dairy Products</h5>
                         </div>
-                    </div>
+                    </div></a>
                 </div>
 
                 <div class="col-md-3 mb-4">
-                    <div class="card">
+                    <a href="./categories/snacks.html" style="color:black"><div class="card">
                         <img src="./Images/snackss.jpeg" class="card-img-top" alt="Snacks & Munchies">
                         <div class="card-body text-center">
                             <h5 class="card-title">Snacks & Munchies</h5>
                         </div>
-                    </div>
+                    </div></a>
                 </div>
 
 
                 <div class="col-md-3 mb-4">
-                    <div class="card">
+                    <a href="./categories/cooldrinks.html" style="color:black"><div class="card">
                         <img src="./Images/soft-drinks.png" class="card-img-top" alt="Drinks">
                         <div class="card-body text-center">
                             <h5 class="card-title">Cold Drinks & Juices</h5>
                         </div>
-                    </div>
+                    </div></a>
                 </div>
 
                 <div class="col-md-3 mb-4">
-                    <div class="card">
+                    <a href="./categories/icecream.html" style="color:black"><div class="card">
                         <img src="./Images/ice.avif" class="card-img-top" alt="Ice cream">
                         <div class="card-body text-center">
                             <h5 class="card-title">Ice Cream</h5>
                         </div>
-                    </div>
+                    </div></a>
                 </div>
 
                 <div class="col-md-3 mb-4">
-                    <div class="card">
+                    <a href="./categories/all.html" style="color:black"><div class="card">
                         <img src="./Images/see-more.png" class="card-img-top" alt="Drinks">
                         <div class="card-body text-center">
                             <h5 class="card-title">See ALL</h5>
                         </div>
-                    </div>
+                    </div></a>
                 </div>
 
             </div>
@@ -198,46 +230,12 @@
 
   <footer class="bg-dark text-white py-3">
     <div class="container text-center">
-      <p>&copy; 2025. All rights reserved.</p>
+      <p>&copy; 2025. All rights reserved, Contact no. : 1234567890.</p>
     </div>
   </footer>
 
   <script>
-    function detectLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition, showError);
-      }
-    }
-    function showPosition(position) {
-      let lat = position.coords.latitude;
-      let lon = position.coords.longitude;
-      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`)
-        .then(response => response.json())
-        .then(data => {
-          let address = data.address.suburb || data.address.village || data.address.town || data.address.city;
-          document.getElementById("current-location").innerText = "Detected: " + address;
-          let locationDropdown = document.getElementById("location");
-          let locationOptions = Array.from(locationDropdown.options).map(opt => opt.value);
-          if (!locationOptions.includes(address)) {
-            let newOption = document.createElement("option");
-            newOption.value = address;
-            newOption.text = address + " (Detected)";
-            locationDropdown.appendChild(newOption);
-          }
-          locationDropdown.value = address;
-        })
-        .catch(() => {
-          document.getElementById("current-location").innerText = "Unable to retrieve location.";
-        });
-    }
-    function showError(error) {
-      let message = {
-        1: "User denied location access.",
-        2: "Location information unavailable.",
-        3: "Location request timed out."
-      }[error.code] || "An unknown error occurred.";
-      document.getElementById("current-location").innerText = message;
-    }
+   
     function toggleDropdown() {
       document.getElementById("account-dropdown").classList.toggle("show");
     }
@@ -260,6 +258,15 @@
       btn.innerText = btn.innerText === "Add to Cart" ? "Added" : "Add to Cart";
       btn.classList.toggle("added-effect");
     }
+
+    const allProducts = [
+    { title: "Apple", price: "100/kg" },
+    { title: "Banana", price: "40/kg" },
+    { title: "Carrot", price: "45/kg" },
+
+    { title: "Paneer", price: "200/kg" }
+];
+
   </script>
 </body>
 </html>
