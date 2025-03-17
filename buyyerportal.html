@@ -1,314 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buyer Portal</title>
-    <link rel="stylesheet" href="buyyerportal.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buyer Portal</title>
+  <link rel="stylesheet" href="buyerportal.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    #clear-search {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #333;
+      display: none;
+    }
+    .cart-icon {
+      height: 24px;
+      margin-left: 5px;
+    }
+    .added-effect {
+      background-color: #28a745;
+      color: white;
+    }
+  </style>
 </head>
 <body>
+  <header class="bg-success text-white p-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div class="logo">
+        <img src="Images/Logo.jpeg" alt="Logo" height="40">
+      </div>
+      <div class="location d-flex align-items-center">
+        <label for="location" class="mr-2">Deliver to:</label>
+        <select id="location" class="form-control mr-2">
+          <option value="RHR">RHR</option>
+          <option value="BHR">BHR</option>
+          <option value="MHR">MHR</option>
+          <option value="GHR">GHR</option>
+          <option value="SHR">SHR</option>
+          <option value="FACULTY QUARTERS">FACULTY QUARTERS</option>
+        </select>
+        <span id="current-location" class="ml-2 text-light small font-weight-bold"></span>
+      </div>
+      <div class="search-bar w-50 position-relative">
+        <input type="text" class="form-control" id="search-input" placeholder="Search for products..." oninput="toggleClearButton()">
+        <span id="clear-search" onclick="clearSearch()">&times;</span>
+      </div>
+      <div class="account position-relative">
+        <button class="btn btn-outline-light dropdown-toggle" onclick="toggleDropdown()">Account</button>
+        <ul class="dropdown-menu" id="account-dropdown">
+          <li><a href="#order-history" class="dropdown-item">Order History</a></li>
+          <li><a href="#contact" class="dropdown-item">Contact</a></li>
+          <li><a href="#" class="dropdown-item">Logout</a></li>
+        </ul>
+      </div>
+      <div class="user-actions">
+        <button class="btn btn-outline-light d-flex align-items-center" id="cart-button">
+          <img src="Images/shopping-cart.png" alt="Cart" class="cart-icon">
+        </button>
+      </div>
+    </div>
+  </header>
 
-    <!-- Header Section -->
-    <header class="bg-success text-white p-3">
-        <div class="container d-flex justify-content-between align-items-center">
-            <div class="logo">
-                <img src="Images/Logo.jpeg" alt="Logo" height="40">
+  <section class="delivery-slot p-3">
+    <div class="container">
+      <h4>Select a Delivery Slot:</h4>
+      <select id="delivery-slot" class="form-control w-50">
+        <option value="Morning">Morning (8 AM - 11 AM)</option>
+        <option value="Afternoon">Afternoon (12 PM - 3 PM)</option>
+        <option value="Evening">Evening (4 PM - 7 PM)</option>
+        <option value="Night">Night (8 PM - 11 PM)</option>
+      </select>
+    </div>
+  </section>
+
+  <section class="categories py-4">
+    <div class="container">
+      <h2 class="mb-4">Shop by Categories</h2>
+      <div class="row">
+        <!-- Category Cards -->
+        <div class="col-md-3 mb-4" *ngFor="let category of categories">
+          <div class="card text-center">
+            <img src="Images/{{category.image}}" class="card-img-top" alt="{{category.alt}}">
+            <div class="card-body">
+              <h5 class="card-title">{{category.name}}</h5>
             </div>
-
-            <!-- Location Selector -->
-            <div class="location d-flex align-items-center">
-                <label for="location" class="mr-2">Deliver to:</label>
-                
-                <!-- Manual Location Dropdown -->
-                <select id="location" class="form-control mr-2">
-                    <option value="RHR">RHR</option>
-                    <option value="BHR">BHR</option>
-                    <option value="MHR">MHR</option>
-                    <option value="GHR">GHR</option>
-                    <option value="SHR">SHR</option>
-                    <option value="FACULTY QUARTERS">FACULTY QUARTERS</option>
-                </select>
-
-               
-            </div>
-
-            <!-- Search Bar -->
-            <div class="search-bar w-50 position-relative">
-                <input type="text" class="form-control" id="search-input" placeholder="Search for products..." oninput="toggleClearButton()">
-                <span id="clear-search" onclick="clearSearch()">✖</span>
-            </div>            
-            <!-- Account Dropdown -->
-            <div class="account position-relative">
-                <button class="btn btn-outline-light dropdown-toggle" onclick="toggleDropdown()">Account</button>
-                <ul class="dropdown-menu" id="account-dropdown">
-                    <li><a href="#order-history" class="dropdown-item">Order History</a></li>
-                    <li><a href="#contact" class="dropdown-item">Contact</a></li>
-                    <li><a href="#" class="dropdown-item">Logout</a></li>
-                </ul>
-            </div>
-
-            <!-- Cart Button -->
-            <div class="user-actions">
-                <button class="btn btn-outline-light d-flex align-items-center" id="cart-button">
-                    <img src="./Images/shopping-cart.png" alt="Cart" class="cart-icon">
-                     
-                </button>
-            </div>
-    </header>
-
-    <!-- Delivery Slot Selection -->
-    <section class="delivery-slot p-3">
-        <div class="container">
-            <h4>Select a Delivery Slot:</h4>
-            <select id="delivery-slot" class="form-control w-50">
-                <option value="Morning">Morning (8 AM - 11 AM)</option>
-                <option value="Afternoon">Afternoon (12 PM - 3 PM)</option>
-                <option value="Evening">Evening (4 PM - 7 PM)</option>
-                <option value="Night">Night (8 PM - 11 PM)</option>
-            </select>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Categories Section -->
-    <section class="categories py-4">
-        <div class="container">
-            <h2 class="mb-4">Shop by Categories</h2>
-            <div class="row">
-                <div class="col-md-3 mb-4">
-                    <div class="card">
-                        <img src="./Images/fruits.png" class="card-img-top" alt="Fruits">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Fruits & Vegetables</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="card">
-                        <img src="./Images/dairy.jpg" class="card-img-top" alt="Dairy">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Dairy Products</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 mb-4">
-                    <div class="card">
-                        <img src="./Images/snackss.jpeg" class="card-img-top" alt="Snacks & Munchies">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Snacks & Munchies</h5>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-md-3 mb-4">
-                    <div class="card">
-                        <img src="./Images/soft-drinks.png" class="card-img-top" alt="Drinks">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Cold Drinks & Juices</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 mb-4">
-                    <div class="card">
-                        <img src="./Images/ice.avif" class="card-img-top" alt="Ice cream">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Ice Cream</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 mb-4">
-                    <div class="card">
-                        <img src="./Images/see-more.png" class="card-img-top" alt="Drinks">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">See ALL</h5>
-                        </div>
-                    </div>
-                </div>
-
+  <section class="products py-4 bg-light">
+    <div class="container">
+      <h2 class="mb-4">Recommended Products</h2>
+      <div class="row">
+        <!-- Product Cards -->
+        <div class="col-md-3 mb-4" *ngFor="let product of products">
+          <div class="card text-center">
+            <img src="Images/{{product.image}}" class="card-img-top" alt="{{product.alt}}">
+            <div class="card-body">
+              <h5 class="card-title">{{product.name}}</h5>
+              <p class="card-text">{{product.price}}</p>
+              <button class="btn btn-success add-to-cart" onclick="addToCart(this)">Add to Cart</button>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Product Section -->
-       
-    <section class="products py-4 bg-light">
-        <div class="container">
-            <h2 class="mb-4">Recommended Products</h2>
-            <div class="row">
-                
-                <div class="col-md-3 mb-4">
-                    <div class="card">
-                        <img src="./Images/apples.jpg" class="card-img-top" alt="Apple">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Fresh Apples</h5>
-                            <p class="card-text">₹150/kg</p>
-                            <button class="btn btn-success add-to-cart" onclick="addToCart(this)">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-3 mb-4">
-                    <div class="card">
-                        <img src="./Images/kurkure.jpg" class="card-img-top" alt="Milk">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Kurkure</h5>
-                            <p class="card-text">₹20/Packet</p>
-                            <button class="btn btn-success add-to-cart" onclick="addToCart(this)">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
+  <footer class="bg-dark text-white py-3">
+    <div class="container text-center">
+      <p>&copy; 2025. All rights reserved.</p>
+    </div>
+  </footer>
 
-                <div class="col-md-3 mb-4">
-                    <div class="card">
-                        <img src="./Images/milk.webp" class="card-img-top" alt="Milk">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Organic Milk</h5>
-                            <p class="card-text">₹50/L</p>
-                            <button class="btn btn-success add-to-cart" onclick="addToCart(this)">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 mb-4">
-                    <div class="card">
-                        <img src="./Images/maggi.webp" class="card-img-top" alt="Milk">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Maggi</h5>
-                            <p class="card-text">₹30/Packet</p>
-                            <button class="btn btn-success add-to-cart" onclick="addToCart(this)">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-
- 
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-3">
-        <div class="container text-center">
-            <p>&copy; 2025. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- JavaScript -->
-    <script>
-        function detectLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
-            } else {
-                document.getElementById("current-location").innerText = "Geolocation is not supported by your browser.";
-            }
-        }
-
-        function showPosition(position) {
-            let lat = position.coords.latitude;
-            let lon = position.coords.longitude;
-
-            // Reverse Geocoding API (OpenStreetMap)
-            fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`)
-                .then(response => response.json())
-                .then(data => {
-                    let address = data.address.suburb || data.address.village || data.address.town || data.address.city;
-
-                    document.getElementById("current-location").innerText = "Detected: " + address;
-
-                    // Check if detected location matches any dropdown options
-                    let locationDropdown = document.getElementById("location");
-                    let locationOptions = Array.from(locationDropdown.options).map(option => option.value);
-
-                    if (locationOptions.includes(address)) {
-                        locationDropdown.value = address;
-                    } else {
-                        // Add detected location to the dropdown if it doesn't exist
-                        let newOption = document.createElement("option");
-                        newOption.value = address;
-                        newOption.text = address + " (Detected)";
-                        locationDropdown.appendChild(newOption);
-                        locationDropdown.value = address;
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                    document.getElementById("current-location").innerText = "Unable to retrieve location.";
-                });
-        }
-
-        function showError(error) {
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    document.getElementById("current-location").innerText = "User denied location access.";
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    document.getElementById("current-location").innerText = "Location information unavailable.";
-                    break;
-                case error.TIMEOUT:
-                    document.getElementById("current-location").innerText = "Location request timed out.";
-                    break;
-                case error.UNKNOWN_ERROR:
-                    document.getElementById("current-location").innerText = "An unknown error occurred.";
-                    break;
-            }
-        }
-
-        function toggleDropdown() {
-            document.getElementById("account-dropdown").classList.toggle("show");
-        }
-        
-        function toggleClearButton() {
-    let input = document.getElementById("search-input");
-    let clearButton = document.getElementById("clear-search");
-
-    if (input.value.length > 0) {
-        clearButton.style.display = "flex";
-        clearButton.style.justifyContent = "center";
-        clearButton.style.alignItems = "center";
-    } else {
-        clearButton.style.display = "none";
+  <script>
+    function detectLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      }
     }
-}
-
-function clearSearch() {
-    document.getElementById("search-input").value = "";
-    document.getElementById("clear-search").style.display = "none";
-}
-
-
-
-
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropdown-toggle')) {
-                var dropdowns = document.getElementsByClassName("dropdown-menu");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        };
-
-
-//Add to cart added option
-function addToCart(button) {
-    if (button.innerText === "Add to Cart") {
-        button.innerText = "Added";
-        button.classList.add("added-effect");
-    } else {
-        button.innerText = "Add to Cart";
-        button.classList.remove("added-effect");
+    function showPosition(position) {
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
+      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`)
+        .then(response => response.json())
+        .then(data => {
+          let address = data.address.suburb || data.address.village || data.address.town || data.address.city;
+          document.getElementById("current-location").innerText = "Detected: " + address;
+          let locationDropdown = document.getElementById("location");
+          let locationOptions = Array.from(locationDropdown.options).map(opt => opt.value);
+          if (!locationOptions.includes(address)) {
+            let newOption = document.createElement("option");
+            newOption.value = address;
+            newOption.text = address + " (Detected)";
+            locationDropdown.appendChild(newOption);
+          }
+          locationDropdown.value = address;
+        })
+        .catch(() => {
+          document.getElementById("current-location").innerText = "Unable to retrieve location.";
+        });
     }
-}
-
-
- 
-    </script>
-
+    function showError(error) {
+      let message = {
+        1: "User denied location access.",
+        2: "Location information unavailable.",
+        3: "Location request timed out."
+      }[error.code] || "An unknown error occurred.";
+      document.getElementById("current-location").innerText = message;
+    }
+    function toggleDropdown() {
+      document.getElementById("account-dropdown").classList.toggle("show");
+    }
+    function toggleClearButton() {
+      let input = document.getElementById("search-input");
+      let clear = document.getElementById("clear-search");
+      clear.style.display = input.value ? "flex" : "none";
+    }
+    function clearSearch() {
+      document.getElementById("search-input").value = "";
+      document.getElementById("clear-search").style.display = "none";
+    }
+    window.onclick = function(e) {
+      if (!e.target.matches('.dropdown-toggle')) {
+        let dropdowns = document.getElementsByClassName("dropdown-menu");
+        for (let d of dropdowns) d.classList.remove("show");
+      }
+    }
+    function addToCart(btn) {
+      btn.innerText = btn.innerText === "Add to Cart" ? "Added" : "Add to Cart";
+      btn.classList.toggle("added-effect");
+    }
+  </script>
 </body>
 </html>
